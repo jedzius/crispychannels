@@ -22,5 +22,7 @@ public class ServerTest {
 
         thread.setName("MASTER");
         thread.start();
+
+        server.bindHandler(null);
     }
 }

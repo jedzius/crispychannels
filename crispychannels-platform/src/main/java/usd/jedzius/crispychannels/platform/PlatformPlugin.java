@@ -33,8 +33,6 @@ public class PlatformPlugin extends JavaPlugin {
         final Thread clientThread = new Thread(clientWorker, "CLIENT-" + ID);
         clientThread.start();
 
-
-
         this.getCommand("testuj").setExecutor(new CommandExecutor() {
             @Override
             public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
