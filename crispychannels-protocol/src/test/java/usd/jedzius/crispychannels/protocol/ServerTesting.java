@@ -36,7 +36,7 @@ public class ServerTesting {
 
         @Override
         public void handle(UserTransferPayload.UserTransferInfoPayload payload) {
-            Log.info("UDALO SIE PAKIET DOSZEDL!");
+            Log.info("UDALO SIE PAKIET DOSZEDL!" + payload.getSlot());
         }
     }
 }

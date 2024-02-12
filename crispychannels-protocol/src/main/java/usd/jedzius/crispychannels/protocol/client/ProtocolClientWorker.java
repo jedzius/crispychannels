@@ -18,12 +18,6 @@ public class ProtocolClientWorker implements Runnable {
         try {
             this.client.start();
             this.client.connect();
-
-            UserTransferPayload.UserTransferInfoPayload payload = UserTransferPayload.UserTransferInfoPayload.newBuilder()
-                    .setSlot(1)
-                    .build();
-
-            client.sendTCP(EncodePayload.serializePayload(payload));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

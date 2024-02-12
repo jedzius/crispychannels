@@ -27,7 +27,6 @@ public class PlatformPlugin extends JavaPlugin {
         final ProtocolClientWorker clientWorker = new ProtocolClientWorker(this.client);
         final Thread clientThread = new Thread(clientWorker, "CLIENT-" + ID);
         clientThread.start();
-
     }
 
     @Override
