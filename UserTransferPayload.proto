@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+message UserConnectServerPayload {
+  string uuid = 1;
+  int32 serverId = 2;
+  Location location = 3;
+  string gamemode = 4;
+  int32 slot = 5;
+  int32 food = 6;
+  int32 health = 7;
+  bytes inventory = 8;
+  bytes enderchest = 9;
+  bytes potionEffects = 10;
+}
+
+message Location {
+  string name = 1;
+  double x = 2;
+  double y = 3;
+  double z = 4;
+  optional float yaw = 5;
+  optional float pitch = 6;
+}

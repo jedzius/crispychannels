@@ -1,0 +1,7 @@
+main: usd.jedzius.crispychannels.platform.PlatformPlugin
+name: crispychannels-platform
+version: 1.0.0
+author: jedzius
+
+commands:
+  testuj:
