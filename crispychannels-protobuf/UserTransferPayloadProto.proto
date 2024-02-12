@@ -1,6 +1,9 @@
 syntax = "proto3";
 
-message UserConnectServerPayload {
+option java_outer_classname = "UserTransferPayload";
+
+
+message UserTransferInfoPayload {
   string uuid = 1;
   int32 serverId = 2;
   Location location = 3;

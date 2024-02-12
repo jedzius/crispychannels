@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+option java_outer_classname = "ClientUpdatePayload";
+
+message ClientUpdateInfoPayload {
+  int32 id = 1;
+  int32 online = 2;
+  int32 max = 3;
+  string last_update = 4;
+}

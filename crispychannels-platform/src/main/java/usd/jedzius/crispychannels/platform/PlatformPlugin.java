@@ -5,10 +5,10 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
-import usd.jedzius.crispychannels.protocol.UserTransferPayload;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClient;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClientBuilder;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClientWorker;
+import usd.jedzius.crispychannels.protocol.payload.UserTransferPayload;
 
 public class PlatformPlugin extends JavaPlugin {
 
@@ -33,10 +33,12 @@ public class PlatformPlugin extends JavaPlugin {
         final Thread clientThread = new Thread(clientWorker, "CLIENT-" + ID);
         clientThread.start();
 
+
+
         this.getCommand("testuj").setExecutor(new CommandExecutor() {
             @Override
             public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-                UserTransferPayload.UserConnectServerPayload payload = UserTransferPayload.UserConnectServerPayload.newBuilder()
+                UserTransferPayload.UserTransferInfoPayload payload = UserTransferPayload.UserTransferInfoPayload.newBuilder()
                         .setSlot(1)
                         .build();
 
