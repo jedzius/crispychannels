@@ -4,10 +4,10 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
 import com.google.protobuf.Any;
-import com.google.protobuf.GeneratedMessage;
 import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
 
-public abstract class ProtocolServerHandler<T extends GeneratedMessage> implements Listener {
+public abstract class ProtocolServerHandler<T extends Message> implements Listener {
 
     private final Class<T> type;
 

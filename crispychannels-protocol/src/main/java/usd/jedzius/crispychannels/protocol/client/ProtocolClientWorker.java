@@ -1,7 +1,7 @@
 package usd.jedzius.crispychannels.protocol.client;
 
-import com.esotericsoftware.kryonet.Connection;
-import com.esotericsoftware.kryonet.Listener;
+import usd.jedzius.crispychannels.protocol.payload.UserTransferPayload;
+import usd.jedzius.crispychannels.protocol.serialization.EncodePayload;
 
 import java.io.IOException;
 
@@ -18,6 +18,12 @@ public class ProtocolClientWorker implements Runnable {
         try {
             this.client.start();
             this.client.connect();
+
+            UserTransferPayload.UserTransferInfoPayload payload = UserTransferPayload.UserTransferInfoPayload.newBuilder()
+                    .setSlot(1)
+                    .build();
+
+            client.sendTCP(EncodePayload.serializePayload(payload));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
