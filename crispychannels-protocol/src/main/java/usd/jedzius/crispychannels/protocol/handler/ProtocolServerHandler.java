@@ -9,9 +9,9 @@ import com.google.protobuf.InvalidProtocolBufferException;
 
 public abstract class ProtocolServerHandler<T extends GeneratedMessage> implements Listener {
 
-    private final T type;
+    private final Class<T> type;
 
-    protected ProtocolServerHandler(T type) {
+    protected ProtocolServerHandler(Class<T> type) {
         this.type = type;
     }
 
@@ -21,8 +21,8 @@ public abstract class ProtocolServerHandler<T extends GeneratedMessage> implemen
         byte[] bytes = (byte[]) object;
         try {
             Any any  = Any.parseFrom(bytes);
-            if(any.is(type.getClass())) {
-                this.handle((T) any.unpack(type.getClass()));
+            if(any.is(type)) {
+                this.handle((T) any.unpack(type));
             }
         } catch (InvalidProtocolBufferException e) {
             Log.error("Cannot deserialize bytes into right payload service!");

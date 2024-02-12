@@ -9,6 +9,7 @@ import usd.jedzius.crispychannels.protocol.client.ProtocolClient;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClientBuilder;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClientWorker;
 import usd.jedzius.crispychannels.protocol.payload.UserTransferPayload;
+import usd.jedzius.crispychannels.protocol.serialization.EncodePayload;
 
 public class PlatformPlugin extends JavaPlugin {
 
@@ -25,8 +26,8 @@ public class PlatformPlugin extends JavaPlugin {
     @Override
     public void onEnable() {
         this.client = ProtocolClientBuilder.newBuilder()
-                .withPortTCP(11115)
-                .withPortUDP(11110)
+                .withPortTCP(21111)
+                .withPortUDP(21112)
                 .build();
 
         final ProtocolClientWorker clientWorker = new ProtocolClientWorker(this.client);
@@ -40,8 +41,8 @@ public class PlatformPlugin extends JavaPlugin {
                         .setSlot(1)
                         .build();
 
-                byte[] payloadBytes = payload.toByteArray();
-                client.sendTCP(payloadBytes);
+                byte[] bytes = EncodePayload.serializePayload(payload);
+                client.sendTCP(bytes);
                 return false;
             }
         });

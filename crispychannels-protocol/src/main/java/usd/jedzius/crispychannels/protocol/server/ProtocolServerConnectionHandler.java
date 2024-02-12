@@ -1,6 +1,7 @@
 package usd.jedzius.crispychannels.protocol.server;
 
 import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.FrameworkMessage;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.minlog.Log;
 
@@ -8,6 +9,7 @@ public class ProtocolServerConnectionHandler implements Listener {
 
     @Override
     public void received(Connection connection, Object object) {
+        if(object.getClass().isAssignableFrom(FrameworkMessage.KeepAlive.class)) return;
         Log.info("[CHANNELS/" + Thread.currentThread().getName() +"] Received a payload from " + connection.getRemoteAddressTCP().getHostString());
     }
 
