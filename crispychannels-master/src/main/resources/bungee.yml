@@ -1,0 +1,4 @@
+main: usd.jedzius.crispychannels.master.MasterServerPlugin
+name: crispychannels-master
+version: 1.0.0
+author: jedzius

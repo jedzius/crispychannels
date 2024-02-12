@@ -2,8 +2,8 @@ package usd.jedzius.crispychannels.protocol.server;
 
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
-import usd.jedzius.crispychannels.protocol.handler.ProtocolServerHandler;
-import usd.jedzius.crispychannels.protocol.payload.UserTransferPayload;
+import usd.jedzius.crispychannels.protocol.server.handler.ProtocolServerConnectionHandler;
+import usd.jedzius.crispychannels.protocol.server.handler.ProtocolServerHandler;
 
 import java.io.IOException;
 
@@ -18,15 +18,20 @@ public class ProtocolServer {
         this.portUDP = portUDP;
     }
 
-    public void startNewServer() throws IOException {
+    public void connect() throws IOException {
         this.protocolServer = new Server();
         this.protocolServer.bind(this.portTCP, this.portUDP);
+    }
+
+    public void start() {
         this.protocolServer.start();
-
         this.protocolServer.getKryo().register(byte[].class);
-
         this.protocolServer.addListener(new ProtocolServerConnectionHandler());
         Log.info("[CHANNELS/" + Thread.currentThread().getName() +"] Master server enabled!");
+    }
+
+    public void close() {
+        this.protocolServer.close();
     }
 
     public void bindHandler(ProtocolServerHandler handler) {

@@ -1,9 +1,16 @@
 package usd.jedzius.crispychannels.platform;
 
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClient;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClientBuilder;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClientWorker;
+import usd.jedzius.crispychannels.protocol.payload.UserTransferPayload;
+import usd.jedzius.crispychannels.protocol.serialization.EncodePayload;
 
 public class PlatformPlugin extends JavaPlugin {
 
@@ -11,11 +18,6 @@ public class PlatformPlugin extends JavaPlugin {
 
     // Client
     private ProtocolClient client;
-
-    @Override
-    public void onLoad() {
-
-    }
 
     @Override
     public void onEnable() {
@@ -27,6 +29,20 @@ public class PlatformPlugin extends JavaPlugin {
         final ProtocolClientWorker clientWorker = new ProtocolClientWorker(this.client);
         final Thread clientThread = new Thread(clientWorker, "CLIENT-" + ID);
         clientThread.start();
+
+        getCommand("testuj").setExecutor(new CommandExecutor() {
+            @Override
+            public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
+                UserTransferPayload.UserTransferInfoPayload payload = UserTransferPayload.UserTransferInfoPayload.newBuilder()
+                        .setSlot(1)
+                        .setFood(20)
+                        .setGamemode("CREATIVE")
+                        .build();
+
+                client.sendTCP(EncodePayload.serializePayload(payload));
+                return false;
+            }
+        });
     }
 
     @Override

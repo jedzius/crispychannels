@@ -1,4 +1,4 @@
-package usd.jedzius.crispychannels.protocol.server;
+package usd.jedzius.crispychannels.protocol.server.handler;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.FrameworkMessage;
