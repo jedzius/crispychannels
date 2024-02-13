@@ -1,4 +1,4 @@
-package usd.jedzius.crispychannels.master.handler.payload;
+package usd.jedzius.crispychannels.master.handler.payload.user;
 
 import com.esotericsoftware.minlog.Log;
 import usd.jedzius.crispychannels.protocol.payload.UserTransferPayload;

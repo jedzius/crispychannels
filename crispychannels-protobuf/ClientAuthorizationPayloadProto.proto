@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+option java_outer_classname = "ClientAuthorizationPayload";
+
+message ClientAuthorizationRequestPayload {
+  int32 id = 1;
+}

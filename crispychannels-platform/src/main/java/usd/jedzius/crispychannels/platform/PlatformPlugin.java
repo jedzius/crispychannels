@@ -18,6 +18,8 @@ import usd.jedzius.crispychannels.protocol.serialization.EncodePayload;
 import java.io.File;
 
 public class PlatformPlugin extends JavaPlugin {
+
+    // Config
     private ClientConfig config;
 
     // Client
@@ -40,7 +42,7 @@ public class PlatformPlugin extends JavaPlugin {
                 .withPortUDP(this.config.UDP)
                 .build();
 
-        final ProtocolClientWorker clientWorker = new ProtocolClientWorker(this.client);
+        final ProtocolClientWorker clientWorker = new ProtocolClientWorker(this.client, this.config.ID);
         final Thread clientThread = new Thread(clientWorker, "CLIENT-" + this.config.ID);
         clientThread.start();
 
