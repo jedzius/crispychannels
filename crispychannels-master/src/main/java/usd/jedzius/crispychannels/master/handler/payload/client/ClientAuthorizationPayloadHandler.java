@@ -18,6 +18,6 @@ public class ClientAuthorizationPayloadHandler extends ProtocolServerHandler<Cli
     public void handle(ClientAuthorizationPayload.ClientAuthorizationRequestPayload payload) {
         int id = payload.getId();
 
-        this.serverService.find(id).ifPresentOrElse(server -> server.setActive(true), () -> Log.info("[CHANNELS/" + Thread.currentThread().getName() +"] Received client authorization request but the server with id " + id + " is not configured in master!"));
+        this.serverService.find(id).ifPresentOrElse(server -> server.setActive(true), () -> Log.warn("[CHANNELS/" + Thread.currentThread().getName() +"] Received client authorization request but the server with id " + id + " is not configured in master!"));
     }
 }

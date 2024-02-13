@@ -6,6 +6,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
 import usd.jedzius.crispychannels.protocol.payload.ClientAuthorizationPayload;
+import usd.jedzius.crispychannels.protocol.payload.ClientBindServerProto;
 import usd.jedzius.crispychannels.protocol.serialization.EncodePayload;
 
 import java.io.IOException;
@@ -40,6 +41,15 @@ public class ProtocolClient {
     public void authorize(int id) {
         ClientAuthorizationPayload.ClientAuthorizationRequestPayload payload = ClientAuthorizationPayload.ClientAuthorizationRequestPayload.newBuilder()
                 .setId(id)
+                .build();
+
+        this.sendTCP(EncodePayload.serializePayload(payload));
+    }
+
+    public void bind(int id, String name) {
+        ClientBindServerProto.ClientBindServerInfoProto payload = ClientBindServerProto.ClientBindServerInfoProto.newBuilder()
+                .setId(id)
+                .setName(name)
                 .build();
 
         this.sendTCP(EncodePayload.serializePayload(payload));

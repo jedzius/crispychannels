@@ -7,6 +7,9 @@ public class ClientConfig extends OkaeriConfig {
     @Comment("Client ID")
     public int ID = 1;
 
+    @Comment("Bungee name")
+    public String NAME = "spawn_1";
+
     @Comment("TCP Server port")
     public int TCP = 21111;
 

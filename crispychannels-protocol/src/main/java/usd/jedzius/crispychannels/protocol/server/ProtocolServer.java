@@ -30,6 +30,10 @@ public class ProtocolServer {
         Log.info("[CHANNELS/" + Thread.currentThread().getName() +"] Master server enabled!");
     }
 
+    public void sendTCPToAllConnections(byte[] value) {
+        this.getProtocolServer().getConnections().forEach(conn -> conn.sendTCP(value));
+    }
+
     public void close() {
         this.protocolServer.close();
     }
