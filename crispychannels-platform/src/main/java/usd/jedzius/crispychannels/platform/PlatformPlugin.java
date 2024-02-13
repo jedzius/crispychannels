@@ -1,33 +1,47 @@
 package usd.jedzius.crispychannels.platform;
 
+import eu.okaeri.configs.ConfigManager;
+import eu.okaeri.configs.yaml.bukkit.YamlBukkitConfigurer;
+import eu.okaeri.configs.yaml.bukkit.serdes.SerdesBukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
+import usd.jedzius.crispychannels.platform.config.ClientConfig;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClient;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClientBuilder;
 import usd.jedzius.crispychannels.protocol.client.ProtocolClientWorker;
 import usd.jedzius.crispychannels.protocol.payload.UserTransferPayload;
 import usd.jedzius.crispychannels.protocol.serialization.EncodePayload;
 
-public class PlatformPlugin extends JavaPlugin {
+import java.io.File;
 
-    private final static int ID = 1;
+public class PlatformPlugin extends JavaPlugin {
+    private ClientConfig config;
 
     // Client
     private ProtocolClient client;
 
     @Override
+    public void onLoad() {
+        this.config = ConfigManager.create(ClientConfig.class, config -> {
+            config.withConfigurer(new YamlBukkitConfigurer(), new SerdesBukkit());
+            config.withBindFile(new File(this.getDataFolder(), "config.yml"));
+            config.saveDefaults();
+            config.load();
+        });
+    }
+
+    @Override
     public void onEnable() {
         this.client = ProtocolClientBuilder.newBuilder()
-                .withPortTCP(21111)
-                .withPortUDP(21112)
+                .withPortTCP(this.config.TCP)
+                .withPortUDP(this.config.UDP)
                 .build();
 
         final ProtocolClientWorker clientWorker = new ProtocolClientWorker(this.client);
-        final Thread clientThread = new Thread(clientWorker, "CLIENT-" + ID);
+        final Thread clientThread = new Thread(clientWorker, "CLIENT-" + this.config.ID);
         clientThread.start();
 
         getCommand("testuj").setExecutor(new CommandExecutor() {
