@@ -4,6 +4,10 @@ import eu.okaeri.configs.OkaeriConfig;
 import eu.okaeri.configs.annotation.Comment;
 
 public class ClientConfig extends OkaeriConfig {
+
+    @Comment("AUTH CODE (SAME AS IN BUNGEECORD)")
+    public String AUTH_CODE = "MASELKO#123";
+
     @Comment("Client ID")
     public int ID = 1;
 

@@ -42,7 +42,7 @@ public class PlatformPlugin extends JavaPlugin {
                 .withPortUDP(this.config.UDP)
                 .build();
 
-        final ProtocolClientWorker clientWorker = new ProtocolClientWorker(this.client, this.config.ID, this.config.NAME);
+        final ProtocolClientWorker clientWorker = new ProtocolClientWorker(this.client, this.config.ID, this.config.NAME, this.config.AUTH_CODE);
         final Thread clientThread = new Thread(clientWorker, "CLIENT-" + this.config.ID);
         clientThread.start();
 

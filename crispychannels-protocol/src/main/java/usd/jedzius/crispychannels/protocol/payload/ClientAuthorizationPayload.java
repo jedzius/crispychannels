@@ -22,6 +22,18 @@ public final class ClientAuthorizationPayload {
      * @return The id.
      */
     int getId();
+
+    /**
+     * <code>string code = 2;</code>
+     * @return The code.
+     */
+    java.lang.String getCode();
+    /**
+     * <code>string code = 2;</code>
+     * @return The bytes for code.
+     */
+    com.google.protobuf.ByteString
+        getCodeBytes();
   }
   /**
    * Protobuf type {@code ClientAuthorizationRequestPayload}
@@ -36,6 +48,7 @@ public final class ClientAuthorizationPayload {
       super(builder);
     }
     private ClientAuthorizationRequestPayload() {
+      code_ = "";
     }
 
     @java.lang.Override
@@ -69,6 +82,45 @@ public final class ClientAuthorizationPayload {
       return id_;
     }
 
+    public static final int CODE_FIELD_NUMBER = 2;
+    @SuppressWarnings("serial")
+    private volatile java.lang.Object code_ = "";
+    /**
+     * <code>string code = 2;</code>
+     * @return The code.
+     */
+    @java.lang.Override
+    public java.lang.String getCode() {
+      java.lang.Object ref = code_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        code_ = s;
+        return s;
+      }
+    }
+    /**
+     * <code>string code = 2;</code>
+     * @return The bytes for code.
+     */
+    @java.lang.Override
+    public com.google.protobuf.ByteString
+        getCodeBytes() {
+      java.lang.Object ref = code_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        code_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
     private byte memoizedIsInitialized = -1;
     @java.lang.Override
     public final boolean isInitialized() {
@@ -86,6 +138,9 @@ public final class ClientAuthorizationPayload {
       if (id_ != 0) {
         output.writeInt32(1, id_);
       }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(code_)) {
+        com.google.protobuf.GeneratedMessageV3.writeString(output, 2, code_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -98,6 +153,9 @@ public final class ClientAuthorizationPayload {
       if (id_ != 0) {
         size += com.google.protobuf.CodedOutputStream
           .computeInt32Size(1, id_);
+      }
+      if (!com.google.protobuf.GeneratedMessageV3.isStringEmpty(code_)) {
+        size += com.google.protobuf.GeneratedMessageV3.computeStringSize(2, code_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSize = size;
@@ -116,6 +174,8 @@ public final class ClientAuthorizationPayload {
 
       if (getId()
           != other.getId()) return false;
+      if (!getCode()
+          .equals(other.getCode())) return false;
       if (!getUnknownFields().equals(other.getUnknownFields())) return false;
       return true;
     }
@@ -129,6 +189,8 @@ public final class ClientAuthorizationPayload {
       hash = (19 * hash) + getDescriptor().hashCode();
       hash = (37 * hash) + ID_FIELD_NUMBER;
       hash = (53 * hash) + getId();
+      hash = (37 * hash) + CODE_FIELD_NUMBER;
+      hash = (53 * hash) + getCode().hashCode();
       hash = (29 * hash) + getUnknownFields().hashCode();
       memoizedHashCode = hash;
       return hash;
@@ -261,6 +323,7 @@ public final class ClientAuthorizationPayload {
         super.clear();
         bitField0_ = 0;
         id_ = 0;
+        code_ = "";
         return this;
       }
 
@@ -296,6 +359,9 @@ public final class ClientAuthorizationPayload {
         int from_bitField0_ = bitField0_;
         if (((from_bitField0_ & 0x00000001) != 0)) {
           result.id_ = id_;
+        }
+        if (((from_bitField0_ & 0x00000002) != 0)) {
+          result.code_ = code_;
         }
       }
 
@@ -346,6 +412,11 @@ public final class ClientAuthorizationPayload {
         if (other.getId() != 0) {
           setId(other.getId());
         }
+        if (!other.getCode().isEmpty()) {
+          code_ = other.code_;
+          bitField0_ |= 0x00000002;
+          onChanged();
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         onChanged();
         return this;
@@ -377,6 +448,11 @@ public final class ClientAuthorizationPayload {
                 bitField0_ |= 0x00000001;
                 break;
               } // case 8
+              case 18: {
+                code_ = input.readStringRequireUtf8();
+                bitField0_ |= 0x00000002;
+                break;
+              } // case 18
               default: {
                 if (!super.parseUnknownField(input, extensionRegistry, tag)) {
                   done = true; // was an endgroup tag
@@ -422,6 +498,78 @@ public final class ClientAuthorizationPayload {
       public Builder clearId() {
         bitField0_ = (bitField0_ & ~0x00000001);
         id_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private java.lang.Object code_ = "";
+      /**
+       * <code>string code = 2;</code>
+       * @return The code.
+       */
+      public java.lang.String getCode() {
+        java.lang.Object ref = code_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          code_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>string code = 2;</code>
+       * @return The bytes for code.
+       */
+      public com.google.protobuf.ByteString
+          getCodeBytes() {
+        java.lang.Object ref = code_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          code_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>string code = 2;</code>
+       * @param value The code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCode(
+          java.lang.String value) {
+        if (value == null) { throw new NullPointerException(); }
+        code_ = value;
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string code = 2;</code>
+       * @return This builder for chaining.
+       */
+      public Builder clearCode() {
+        code_ = getDefaultInstance().getCode();
+        bitField0_ = (bitField0_ & ~0x00000002);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>string code = 2;</code>
+       * @param value The bytes for code to set.
+       * @return This builder for chaining.
+       */
+      public Builder setCodeBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) { throw new NullPointerException(); }
+        checkByteStringIsUtf8(value);
+        code_ = value;
+        bitField0_ |= 0x00000002;
         onChanged();
         return this;
       }
@@ -504,9 +652,10 @@ public final class ClientAuthorizationPayload {
   static {
     java.lang.String[] descriptorData = {
       "\n=crispychannels-protobuf/ClientAuthoriz" +
-      "ationPayloadProto.proto\"/\n!ClientAuthori" +
-      "zationRequestPayload\022\n\n\002id\030\001 \001(\005B\034B\032Clie" +
-      "ntAuthorizationPayloadb\006proto3"
+      "ationPayloadProto.proto\"=\n!ClientAuthori" +
+      "zationRequestPayload\022\n\n\002id\030\001 \001(\005\022\014\n\004code" +
+      "\030\002 \001(\tB\034B\032ClientAuthorizationPayloadb\006pr" +
+      "oto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -517,7 +666,7 @@ public final class ClientAuthorizationPayload {
     internal_static_ClientAuthorizationRequestPayload_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ClientAuthorizationRequestPayload_descriptor,
-        new java.lang.String[] { "Id", });
+        new java.lang.String[] { "Id", "Code", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

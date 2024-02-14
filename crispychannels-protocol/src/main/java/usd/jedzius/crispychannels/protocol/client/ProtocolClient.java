@@ -38,9 +38,10 @@ public class ProtocolClient {
         });
     }
 
-    public void authorize(int id) {
+    public void authorize(int id, String code) {
         ClientAuthorizationPayload.ClientAuthorizationRequestPayload payload = ClientAuthorizationPayload.ClientAuthorizationRequestPayload.newBuilder()
                 .setId(id)
+                .setCode(code)
                 .build();
 
         this.sendTCP(EncodePayload.serializePayload(payload));

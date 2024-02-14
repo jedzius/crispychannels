@@ -4,4 +4,5 @@ option java_outer_classname = "ClientAuthorizationPayload";
 
 message ClientAuthorizationRequestPayload {
   int32 id = 1;
+  string code = 2;
 }
