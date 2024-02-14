@@ -10,7 +10,7 @@ import com.google.protobuf.Message;
 public abstract class ProtocolServerHandler<T extends Message> implements Listener {
 
     private final Class<T> type;
-
+    private Connection connection;
     protected ProtocolServerHandler(Class<T> type) {
         this.type = type;
     }
@@ -23,6 +23,7 @@ public abstract class ProtocolServerHandler<T extends Message> implements Listen
             Any any  = Any.parseFrom(bytes);
             if(any.is(type)) {
                 this.handle((T) any.unpack(type));
+                this.connection = connection;
             }
         } catch (InvalidProtocolBufferException e) {
             Log.error("Cannot deserialize bytes into right payload service!");
@@ -30,4 +31,8 @@ public abstract class ProtocolServerHandler<T extends Message> implements Listen
     }
 
     public abstract void handle(T payload);
+
+    public Connection getConnection() {
+        return connection;
+    }
 }

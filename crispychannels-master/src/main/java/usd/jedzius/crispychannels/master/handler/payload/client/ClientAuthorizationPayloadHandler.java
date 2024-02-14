@@ -26,6 +26,7 @@ public class ClientAuthorizationPayloadHandler extends ProtocolServerHandler<Cli
             String code = payload.getCode();
             System.out.println(code);
             if(ServerAuthorization.valid(this.config.AUTH_CODE, code)) {
+                server.setConnectionId(this.getConnection().getID());
                 server.setActive(true);
                 Log.info("[CHANNELS/" + Thread.currentThread().getName() +"] Authorized a new client!");
                 return;

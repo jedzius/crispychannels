@@ -6,14 +6,24 @@ public class Server {
     private final int id;
     private final String name;
     private boolean active;
+    private int connectionId;
 
-    public Server(int id, String name) {
+    public Server(int id,  String name) {
         this.id = id;
+        this.connectionId = connectionId;
         this.name = name;
     }
 
     public int getId() {
         return id;
+    }
+
+    public void setConnectionId(int connectionId) {
+        this.connectionId = connectionId;
+    }
+
+    public int getConnectionId() {
+        return connectionId;
     }
 
     public String getName() {
