@@ -7,12 +7,16 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>usd.jedzius.crispychannels.protocol</groupId>
-    <artifactId>crispychannels-protocol</artifactId>
+    <groupId>usd.jedzius.crispychannels.bungee</groupId>
+    <artifactId>crispychannels-bungee</artifactId>
     <packaging>jar</packaging>
 
-    <name>crispychannels-protocol</name>
+    <name>crispychannels-bungee</name>
     <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
 
     <build>
         <defaultGoal>plugin install</defaultGoal>
@@ -48,15 +52,14 @@
         </resources>
     </build>
 
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
-
     <repositories>
         <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
+            <id>papermc</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <repository>
+            <id>okaeri-repo</id>
+            <url>https://storehouse.okaeri.eu/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -68,20 +71,21 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.crykn</groupId>
-            <artifactId>kryonet</artifactId>
-            <version>2.22.9</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.google.protobuf/protobuf-java -->
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>3.25.0-RC2</version>
+            <groupId>io.github.waterfallmc</groupId>
+            <artifactId>waterfall-api</artifactId>
+            <version>1.20-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>usd.jedzius.crispychannels.common</groupId>
-            <artifactId>crispychannels-common</artifactId>
+            <groupId>usd.jedzius.crispychannels.protocol</groupId>
+            <artifactId>crispychannels-protocol</artifactId>
             <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>eu.okaeri</groupId>
+            <artifactId>okaeri-configs-yaml-bungee</artifactId>
+            <version>5.0.0-beta.5</version>
         </dependency>
     </dependencies>
 </project>

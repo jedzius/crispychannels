@@ -8,9 +8,10 @@
   <packaging>pom</packaging>
 
   <modules>
-    <module>crispychannels-master</module>
+    <module>crispychannels-bungee</module>
     <module>crispychannels-platform</module>
     <module>crispychannels-protocol</module>
+    <module>crispychannels-common</module>
   </modules>
 
   <name>CrispyChannels</name>

@@ -3,25 +3,29 @@ package usd.jedzius.crispychannels.protocol.client;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
-import com.esotericsoftware.kryonet.Server;
 import com.esotericsoftware.minlog.Log;
+import usd.jedzius.crispychannels.common.initializer.Initializer;
+import usd.jedzius.crispychannels.common.protocol.ProtocolClassIdentifier;
 import usd.jedzius.crispychannels.protocol.payload.ClientAuthorizationPayload;
 import usd.jedzius.crispychannels.protocol.payload.ClientBindServerProto;
 import usd.jedzius.crispychannels.protocol.serialization.EncodePayload;
 
 import java.io.IOException;
-import java.util.concurrent.Executors;
 
-public class ProtocolClient {
-    private final int portTCP;
-    private final int portUDP;
+public class ProtocolClient extends ProtocolClassIdentifier {
 
     private boolean ready;
 
     private Client protocolClient;
-    public ProtocolClient(int portTCP, int portUDP) {
-        this.portTCP = portTCP;
-        this.portUDP = portUDP;
+    private Initializer<?> initializer;
+
+    protected ProtocolClient(int portUDP, int portTCP) {
+        super(portUDP, portTCP);
+    }
+
+    @Override
+    public void initializer(Initializer<?> initializer) {
+        this.initializer = initializer;
     }
 
     public void start() throws IOException {
@@ -36,6 +40,11 @@ public class ProtocolClient {
                 setReady(true);
             }
         });
+    }
+
+    @Override
+    public Initializer<?> getInitializer() {
+        return this.initializer;
     }
 
     public void authorize(int id, String code) {
@@ -61,7 +70,7 @@ public class ProtocolClient {
     }
 
     public void connect() throws IOException {
-        this.protocolClient.connect(10000, "localhost", this.portTCP, this.portUDP);
+        this.protocolClient.connect(10000, "localhost", this.getPortTCP(), this.getPortUDP());
     }
 
     public void sendTCP(byte[] value) {
@@ -79,13 +88,5 @@ public class ProtocolClient {
 
     public boolean isReady() {
         return ready;
-    }
-
-    public int getPortUDP() {
-        return portUDP;
-    }
-
-    public int getPortTCP() {
-        return portTCP;
     }
 }
